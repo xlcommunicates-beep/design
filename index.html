@@ -1,0 +1,826 @@
+<title>XianLong Yue Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #f4f3ef;
+    --plate: #e9e8e2;
+    --ink: #1b1d1f;
+    --ink-soft: #585c60;
+    --ink-faint: #82868a;
+    --rule: #d8d6cf;
+    --accent: #123f68;
+    --accent-ink: #ffffff;
+    --measure: 64ch;
+    --gutter: clamp(16px, 4vw, 48px);
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17191b; --plate: #202326; --ink: #ecebe6; --ink-soft: #a6a9ad;
+      --ink-faint: #767a7e; --rule: #2f3236; --accent: #8fb8de; --accent-ink: #0f1c28;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17191b; --plate: #202326; --ink: #ecebe6; --ink-soft: #a6a9ad;
+    --ink-faint: #767a7e; --rule: #2f3236; --accent: #8fb8de; --accent-ink: #0f1c28;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--body); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding-inline: var(--gutter); padding-block: 0 96px;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.05; }
+  p { margin: 0; max-width: var(--measure); }
+  p + p { margin-top: 1em; }
+  .mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.02em; color: var(--ink-soft); }
+  .label { font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); }
+
+  /* header */
+  .top {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px;
+    padding-block: 22px; border-bottom: 1px solid var(--rule);
+    position: sticky; top: 0; background: var(--paper); z-index: 5;
+  }
+  .top .name { font-family: var(--display); font-weight: 700; font-size: 17px; text-decoration: none; }
+  .top nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+  .top nav a { font-family: var(--mono); font-size: 12.5px; text-decoration: none; letter-spacing: 0.02em; color: var(--ink-soft); }
+  .top nav a:hover { color: var(--accent); }
+
+  /* intro */
+  .intro { padding-block: clamp(48px, 8vw, 110px) clamp(40px, 6vw, 80px); border-bottom: 1px solid var(--rule); }
+  .intro h1 { font-size: clamp(38px, 6.4vw, 84px); font-weight: 700; letter-spacing: -0.02em; max-width: 18ch; }
+  .intro-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px var(--gutter); margin-top: clamp(28px, 4vw, 56px); align-items: start; }
+  .intro-grid p { font-size: 18px; }
+  .facts { display: grid; grid-template-columns: max-content 1fr; gap: 10px 20px; font-size: 15px; align-content: start; }
+  .facts dt { font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); padding-top: 4px; }
+  .facts dd { margin: 0; }
+
+  /* work index */
+  .index { padding-block: 40px; border-bottom: 1px solid var(--rule); }
+  .index ol { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 32px; }
+  .index li a { display: grid; grid-template-columns: 62px 1fr; gap: 14px; text-decoration: none; padding-block: 8px; border-top: 1px solid var(--rule); font-size: 15px; }
+  .index li a span:first-child { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); padding-top: 3px; }
+  .index li a em { font-style: normal; color: var(--ink-soft); display: block; font-size: 13.5px; }
+
+  /* project */
+  .project { padding-block: clamp(56px, 8vw, 112px); border-bottom: 1px solid var(--rule); }
+  .project-head { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px var(--gutter); align-items: end; margin-bottom: clamp(24px, 3vw, 40px); }
+  .project h2 { font-size: clamp(28px, 4vw, 52px); font-weight: 700; letter-spacing: -0.015em; }
+  .project h2 small { display: block; font-family: var(--mono); font-weight: 400; font-size: 12.5px; letter-spacing: 0.02em; color: var(--ink-soft); margin-bottom: 14px; }
+  .meta { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; font-size: 14px; align-self: end; }
+  .meta dt { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); padding-top: 3px; }
+  .meta dd { margin: 0; color: var(--ink-soft); }
+
+  .plate { background: var(--plate); border: 1px solid var(--rule); overflow: hidden; }
+  .plate img, .plate video { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .plate.full { aspect-ratio: auto; }
+  .plate.full img { height: auto; }
+  .plate.contain img, .plate.contain video { object-fit: contain; object-position: center; }
+  .plate.video { position: relative; background: #101214; border-color: #101214; }
+  .plate.video .play { position: absolute; right: 10px; bottom: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.55); padding: 4px 8px; border-radius: 2px; pointer-events: none; }
+  figure.playing .play { opacity: 0; }
+  figure { margin: 0; }
+  figcaption { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin-top: 8px; letter-spacing: 0.01em; }
+  .plate.full figcaption { padding: 8px 12px 12px; }
+
+  .grid { display: grid; gap: 14px; margin-top: 14px; align-items: start; }
+  .grid .plate { aspect-ratio: 4 / 3; }
+  .grid.r169 .plate { aspect-ratio: 16 / 9; }
+  .grid.r43 .plate { aspect-ratio: 4 / 3; }
+  .grid.r34 .plate { aspect-ratio: 3 / 4; }
+  .grid.r11 .plate { aspect-ratio: 1 / 1; }
+  .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .g-photo { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  .g-photo .stack { display: grid; gap: 14px; }
+  .g-photo .stack .plate { aspect-ratio: 4 / 3; }
+  .g-photo > figure .plate { aspect-ratio: 1 / 3.05; }
+  .plate.full + .grid, .grid + .plate.full { margin-top: 14px; }
+
+  .story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 24px var(--gutter); margin-top: clamp(32px, 4vw, 56px); }
+  .story h3 { font-family: var(--mono); font-weight: 500; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); padding-top: 6px; }
+  .story p { font-size: 16.5px; color: var(--ink); }
+  .story ul { margin: 0; padding-left: 1.1em; max-width: var(--measure); font-size: 16.5px; }
+  .story li + li { margin-top: 6px; }
+  .note { font-size: 14px; color: var(--ink-soft); font-style: italic; }
+
+  /* other work */
+  .other { padding-block: clamp(56px, 8vw, 112px); border-bottom: 1px solid var(--rule); }
+  .other-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 14px; margin-top: 28px; }
+  .other-grid figure .plate { aspect-ratio: 4 / 3; }
+  .other-grid figure .plate.contain img { padding: 8%; }
+  .other-grid figcaption { color: var(--ink); font-family: var(--body); font-size: 15px; }
+  .other-grid figcaption span { display: block; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+
+  /* lead */
+  .lead { padding-block: clamp(56px, 8vw, 112px); border-bottom: 1px solid var(--rule); }
+  .lead-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 24px var(--gutter); margin-top: 28px; }
+  .lead h2, .other h2, .about h2 { font-size: clamp(26px, 3.4vw, 40px); font-weight: 700; letter-spacing: -0.015em; }
+
+  /* about */
+  .about { padding-block: clamp(56px, 8vw, 112px); }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 32px var(--gutter); margin-top: 28px; }
+  .about img { width: 180px; border-radius: 2px; }
+  .timeline { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .timeline li { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-block: 10px; border-top: 1px solid var(--rule); }
+  .timeline li span:first-child { font-family: var(--mono); font-size: 12.5px; color: var(--ink-soft); padding-top: 2px; }
+  .timeline em { font-style: normal; color: var(--ink-soft); display: block; font-size: 14px; }
+  .contact { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px; }
+  footer { margin-top: 56px; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+
+  @media (max-width: 760px) {
+    .intro-grid, .project-head, .story, .lead-grid, .about-grid { grid-template-columns: 1fr; }
+    .g3, .g4, .g5, .other-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g-photo { grid-template-columns: 1fr; }
+    .g-photo > figure .plate { aspect-ratio: 4 / 3; }
+    .span2 { grid-column: span 2; }
+    .timeline li { grid-template-columns: 1fr; gap: 2px; }
+    .top { position: static; }
+  }
+  @media (max-width: 460px) {
+    .g2, .g3, .g4, .g5, .other-grid { grid-template-columns: 1fr; }
+    .span2 { grid-column: auto; }
+  }
+</style>
+
+<header class="top">
+  <a class="name" href="#top">XianLong Yue</a>
+  <nav aria-label="Sections">
+    <a href="#work">Selected work</a>
+    <a href="#other">Other work</a>
+    <a href="#lead">How I work</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="intro">
+    <p class="label">Graphic design portfolio · Singapore</p>
+    <h1 style="margin-top:18px">Brand identity systems, campaign creative and print production for financial and consumer brands.</h1>
+    <div class="intro-grid">
+      <div>
+        <p>I have spent seven years designing in-house and freelance, mostly for companies that handle other people's money: a retail brokerage, a payments network, a financial-wellness startup, two investment firms. Before that, consumer and healthcare brands in retail. The work in this portfolio runs from logo construction and 34-page guideline documents to bus wraps, shelf standees, product labels, a seasonal catalogue, and motion for out-of-home screens and social.</p>
+        <p>What I care about most is the system underneath the assets. A good identity should let someone who is not me produce a correct piece of work on a Friday afternoon without asking. Most of the projects below are shown with the governance layer, not only the hero image, because that is the part I would be responsible for in any brand, creative or marketing lead role. Video pieces are muted and play on hover or tap.</p>
+      </div>
+      <dl class="facts">
+        <dt>Currently</dt><dd>Senior Associate, Marketing &amp; Communications, Partior — sole design and marketing lead</dd>
+        <dt>Sectors</dt><dd>Payments, brokerage, fund management, fintech, FMCG, retail, healthcare</dd>
+        <dt>Tools</dt><dd>Illustrator, Photoshop, InDesign, After Effects, Premiere, Blender, Figma, HTML/CSS, WordPress, Next.js</dd>
+        <dt>Languages</dt><dd>English, Mandarin</dd>
+        <dt>Contact</dt><dd><a href="mailto:xlcommunicates@gmail.com">xlcommunicates@gmail.com</a></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="index" id="work">
+    <p class="label">Selected work</p>
+    <ol>
+      <li><a href="#tradetogether"><span>2026</span><span>TradeTogether<em>Identity system and brand guidelines for a MAS-licensed fund manager</em></span></a></li>
+      <li><a href="#3r"><span>2025</span><span>3R Investment Management<em>Identity from seven directions to a finished system</em></span></a></li>
+      <li><a href="#teleskop"><span>2024–25</span><span>Teleskop<em>Brand from nothing, website, and a summit booth</em></span></a></li>
+      <li><a href="#webull"><span>2022–24</span><span>Webull<em>Out-of-home and social campaign execution</em></span></a></li>
+      <li><a href="#primeliquor"><span>2021–22</span><span>Prime Liquor<em>Brand book, icon sets, packaging and launch creative</em></span></a></li>
+      <li><a href="#yokumoku"><span>2025</span><span>Yoku Moku<em>Seasonal catalogue and Chinese New Year red packets</em></span></a></li>
+      <li><a href="#clair"><span>2023–25</span><span>cl-air<em>Proposal, logo survey, brand playbook, 3D renders, packaging and labels</em></span></a></li>
+      <li><a href="#babysafe"><span>2019–21</span><span>BabySafe<em>Character system and packaging range for a bedding brand</em></span></a></li>
+      <li><a href="#zenko"><span>2019–21</span><span>Zenko Superfoods<em>Retail standee, packaging and carton</em></span></a></li>
+      <li><a href="#partior"><span>2025–</span><span>Partior<em>Website, Blender key visuals and content system for a payments network</em></span></a></li>
+      <li><a href="#mustela"><span>2019–21</span><span>Mustela Singapore<em>Campaigns, illustration and content for a distributor brand</em></span></a></li>
+    </ol>
+  </section>
+
+  <!-- TradeTogether -->
+  <article class="project" id="tradetogether">
+    <div class="project-head">
+      <h2><small>01 · Brand identity and guidelines</small>TradeTogether</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>TradeTogether Pte. Ltd., a MAS-licensed fund management company, Singapore</dd>
+        <dt>Year</dt><dd>March – May 2026, freelance</dd>
+        <dt>Role</dt><dd>Sole designer: audit, identity, guidelines, collateral, website content architecture</dd>
+        <dt>Deliverables</dt><dd>Symbol and wordmark, five lockups, two-tier colour system, typography, photography direction, 34-page guidelines, namecards, letterhead, LinkedIn and Zoom kit, website, prospectus</dd>
+      </dl>
+    </div>
+
+    <figure class="plate full"><img src="images/tt-artboards.jpg" alt="All 34 artboards of the TradeTogether brand guidelines laid out in a grid"></figure>
+    <div class="grid g2 r169">
+      <figure><div class="plate"><img src="images/tt-construction.jpg" alt="Logo construction page showing the golden-ratio relationships between symbol and wordmark"></div><figcaption>Construction. Symbol-to-wordmark proportions and the TRADE/TOGETHER spacing are all set on 1:1.618.</figcaption></figure>
+      <figure><div class="plate"><img src="images/tt-safespace.jpg" alt="Safe space page showing the exclusion zone derived from the letter O"></div><figcaption>Exclusion zone. The unit is the O in the wordmark, so clearance scales with the logo without a separate table.</figcaption></figure>
+      <figure><div class="plate"><img src="images/tt-variations.jpg" alt="Logo variations: black and white, reversed, white and green on blue, icon only"></div><figcaption>Variations, each with the situation it is for. The icon-only mark is the only asset permitted below 24 px.</figcaption></figure>
+      <figure><div class="plate"><img src="images/tt-misuse.jpg" alt="Logo misuse matrix with nine examples"></div><figcaption>Misuse matrix. Written after watching what the previous logo had been through in three years of decks.</figcaption></figure>
+      <figure><div class="plate"><img src="images/tt-colour-ratio.jpg" alt="Colour ratio page: 60 percent white, 20 percent institutional blue, 15 percent frontier green, 5 percent accent"></div><figcaption>Colour ratio. The percentages are there so a slide deck and a factsheet come out looking like the same company.</figcaption></figure>
+      <figure><div class="plate"><img src="images/tt-extended-palette.jpg" alt="Extended colour palette with named tones assigned to strategy, technical diagrams and data visualisation"></div><figcaption>Extended palette. Every tone has a name and a job: up-sparklines, negative variance, risk flags, the investor portal login.</figcaption></figure>
+    </div>
+    <div class="grid g4 r169">
+      <figure><div class="plate"><img src="images/tt-headings.jpg" alt="Heading scale for web and mobile in Archivo Extra Bold"></div><figcaption>Type scale, web and mobile, so the website build did not have to invent one.</figcaption></figure>
+      <figure><div class="plate"><img src="images/tt-photo.jpg" alt="Photography direction: data centres, ports, GPU hardware, warehouses, a vault"></div><figcaption>Photography direction. Physical things the fund actually finances, not stock charts.</figcaption></figure>
+      <figure><div class="plate"><img src="images/tt-app-30.jpg" alt="Namecard mockup, white front with circuit pattern and blue reverse"></div><figcaption>Namecards, produced to print with the CMYK values in the guide.</figcaption></figure>
+      <figure><div class="plate"><img src="images/tt-app-31.jpg" alt="Enamel lapel pin of the TradeTogether symbol on a navy jacket"></div><figcaption>Lapel pin. The symbol had to survive at 10 mm in enamel, which is where the minimum-size rule came from.</figcaption></figure>
+    </div>
+    <div class="grid g2 r34">
+      <figure><div class="plate"><img src="images/tt-prospectus.jpg" alt="Prospectus cover for the TradeTogether Global Income VCC Fund"></div><figcaption>Fund prospectus cover, April 2026.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/tt-web-2.jpg" alt="Website design draft page"></div><figcaption>Website, content architecture and design. Live at tradetogether.com.</figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div>
+        <p>TradeTogether had started as a digital-asset trading platform and had become, fairly quietly, a licensed fund manager serving accredited investors and family offices. The 2023 identity still read as a retail crypto product. The brief was a full audit, a repositioning, a new identity, and a guidelines document that a small team and their outside vendors could actually follow, all inside the constraints of the Securities and Futures Act on what a fund manager may say in public.</p>
+      </div>
+      <h3>What I did</h3>
+      <div>
+        <p>I started with a brand-asset analysis and a creative-direction deck with three routes, then took the chosen route through two logo refinement rounds with the founders. The symbol is a numeral 1 and a circuit trace: the fund's first product finances GPU hardware, and the mark needed to say infrastructure rather than speculation. From there I built the system outward: lockups, a colour system with a core palette and an extended palette where each tone has an assigned role in charts and diagrams, a type scale for web and mobile, photography direction, and the applications.</p>
+        <p>The guidelines run to 34 pages and include the parts most guideline documents leave out: the approval route for new collateral, third-party consent for co-branding, and the regulatory constraints on claims. I also wrote the website content architecture and built the site, so the design system and the built product were checked against each other rather than handed over.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>The exclusion zone is derived from a letter in the wordmark, so it scales without a lookup table.</li>
+          <li>Minimum sizes are given in both pixels and millimetres, because the same mark goes on a favicon and a lapel pin.</li>
+          <li>The extended palette is written for the people making charts, not just the people making decks.</li>
+        </ul>
+        <p class="note" style="margin-top:14px">The full guidelines document is client-confidential. Pages shown here are with the client's knowledge; the complete document can be walked through in an interview.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 3R -->
+  <article class="project" id="3r">
+    <div class="project-head">
+      <h2><small>02 · Brand identity</small>3R Investment Management</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>3R Investment Management, a quantamental investment firm</dd>
+        <dt>Year</dt><dd>October – December 2025, freelance</dd>
+        <dt>Role</dt><dd>Sole designer: logo exploration, identity, guidelines, collateral</dd>
+        <dt>Deliverables</dt><dd>Seven logo directions with rationale, chosen identity, colour and type guidelines, namecards, LinkedIn kit, email signature, presentation template, website hero</dd>
+      </dl>
+    </div>
+
+    <div class="grid g2 r34">
+      <figure><div class="plate contain"><img src="images/3r-options.jpg" alt="Seven logo directions for 3R Investment Management, each with a concept sketch and a written rationale"></div><figcaption>Seven directions, each with the concept progression and a paragraph on why it might be right for this firm. The client chose option 1.</figcaption></figure>
+      <figure><div class="plate"><img src="images/3r-linkedin.jpg" alt="3R LinkedIn company page mockup"></div><figcaption>LinkedIn company page, with matching personal banners for the partners.</figcaption></figure>
+    </div>
+    <div class="grid g3 r43">
+      <figure><div class="plate"><img src="images/3r-namecard.jpg" alt="3R namecard mockup, front and back"></div><figcaption>Namecard.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/3r-accent-options.jpg" alt="Accent colour options for the 3R identity"></div><figcaption>Accent options presented before the palette was fixed.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/3r-guidelines.jpg" alt="3R branding guidelines page with logo variations, typeface and a seven-step colour palette"></div><figcaption>Guidelines. Logo variations, Aptos as the typeface, and a palette with seven steps per hue so the team can build charts without asking.</figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>A new investment firm run by experienced managers, describing its approach as quantamental, needed an identity that was credible to institutional allocators from the first meeting. No existing assets. The partners wanted to see real alternatives and to understand the reasoning behind each one, not to be handed a single answer.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>I presented seven directions, each with a short concept sequence showing how the mark was built and a written rationale about what it would signal to their audience. The chosen direction merges the numeral 3 and the letter R into one symbol, with a small orange segment standing for the AI element of their process. From there: horizontal and vertical lockups, mono and reversed versions, a palette with seven tints per hue, a typeface, and the collateral the partners needed to start meeting people.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>The written rationale on each option made the client conversation about positioning rather than taste, and the decision took one meeting.</li>
+          <li>The seven-step palette was a deliberate choice for a firm that will produce a lot of charts.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Teleskop -->
+  <article class="project" id="teleskop">
+    <div class="project-head">
+      <h2><small>03 · Brand, website and event</small>Teleskop</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>Teleskop Technologies, an early-stage financial-wellness and legacy-planning app</dd>
+        <dt>Year</dt><dd>November 2024 – July 2025, in-house as Marketing Manager</dd>
+        <dt>Role</dt><dd>First and only marketing hire. Owned brand, website, content, event programme</dd>
+        <dt>Deliverables</dt><dd>Identity and logo pack, website, social and video content, Echelon Asia Summit 2025 booth and print, app store creative</dd>
+      </dl>
+    </div>
+
+    <div class="grid g2 r169">
+      <figure><div class="plate contain" style="background:#1d2a44;border-color:#1d2a44"><img src="images/teleskop-backdrop.jpg" alt="Teleskop booth backdrop for Echelon Asia Summit 2025"></div><figcaption>Booth backdrop, Echelon Asia Summit 2025, booth M04. Print-ready at 3 m wide.</figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/teleskop-interview-women-16x9.jpg" src="videos/teleskop-interview-women-16x9.mp4"></video><span class="play">play</span></div><figcaption>"What is financial wellness?" interview series<span>Shot, cut and titled in-house; 16:9 and 9:16 versions of each answer.</span></figcaption></figure>
+    </div>
+    <div class="grid g4 r11">
+      <figure><div class="plate contain"><img src="images/teleskop-home.jpg" alt="Teleskop website home page"></div><figcaption>Website home page, designed in Figma and built on WordPress. Top of the page shown.</figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/teleskop-tag-beneficiaries-pearl.jpg" src="videos/teleskop-tag-beneficiaries-pearl.mp4"></video><span class="play">play</span></div><figcaption>"Tag beneficiaries", Girl with a Pearl Earring<span>15 s. Old masters holding the app.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/teleskop-tag-beneficiaries-monalisa.jpg" src="videos/teleskop-tag-beneficiaries-monalisa.mp4"></video><span class="play">play</span></div><figcaption>"Tag beneficiaries", Mona Lisa<span>15 s.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/teleskop-tag-beneficiaries-vangogh.jpg" src="videos/teleskop-tag-beneficiaries-vangogh.mp4"></video><span class="play">play</span></div><figcaption>"Tag beneficiaries", Van Gogh<span>15 s.</span></figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>Teleskop had a product and founders, and nothing else visual. The job was to build the brand from zero and get the company to a summit booth in six months, on a startup budget, with me as the only person in marketing.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>Identity first: the telescope mark and the line "look far, look deep", a warm orange against navy that reads as a consumer app rather than a bank. Then the logo pack with usage rules, so contractors and partners could use it without me; the website; the social templates and the video series; and the app-store creative. For Echelon I was the named exhibitor contact and signatory: I handled the backdrop, print collateral, vendor production and the stand itself.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>The logo pack was built to be handed to people I would never meet, which is the test of any identity.</li>
+          <li>The booth backdrop shows the actual product at readable size instead of a slogan, because the point of the stand was to get people to try it.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Webull -->
+  <article class="project" id="webull">
+    <div class="project-head">
+      <h2><small>04 · Campaign creative and out-of-home</small>Webull</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>Webull Holdings (Singapore), a global retail investment platform</dd>
+        <dt>Year</dt><dd>July 2022 – October 2024, in-house as Branding Associate</dd>
+        <dt>Role</dt><dd>Campaign creative and adaptation across Singapore, Hong Kong, Australia, Japan and Malaysia, with in-market teams and media agencies</dd>
+        <dt>Deliverables</dt><dd>Out-of-home across MRT platform screen doors, the Bugis ambient wall, mall facade screens, bus shelters and bus wraps; anniversary campaign announcement workstream; event collateral; social and in-app creative</dd>
+      </dl>
+    </div>
+
+    <figure class="plate full"><img src="images/webull-bugis-ambient.jpg" alt="Webull birthday campaign on the curved ambient wall above the escalators at Bugis MRT concourse"><figcaption>Bugis MRT, ambient wall over the concourse escalators. 10.67 × 3.01 m, one panel. The birthday campaign with the Brooklyn Nets partnership, April 2023.</figcaption></figure>
+    <div class="grid g2 r43">
+      <figure><div class="plate"><img src="images/webull-mrt.jpg" alt="Webull campaign creative on the platform screen doors at Somerset MRT station"></div><figcaption>Somerset MRT, platform screen doors. "Every second counts", the anniversary campaign.</figcaption></figure>
+      <figure><div class="plate"><img src="images/webull-bus.jpg" alt="Webull full bus wrap with the Every Second Counts headline"></div><figcaption>Bus wrap, same campaign. Artwork adapted to the vehicle template and checked against the printer's proof.</figcaption></figure>
+    </div>
+    <div class="grid g5 r43">
+      <figure><div class="plate"><img src="images/webull-4.jpg" alt="Webull Happy Birthday campaign on platform screen doors at night"></div><figcaption>Birthday campaign, platform screen doors.</figcaption></figure>
+      <figure><div class="plate"><img src="images/webull-waterway-point.jpg" alt="Webull birthday campaign on the Waterway Point facade screen"></div><figcaption>Waterway Point facade screen.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/webull-jem-facade.jpg" alt="Webull campaign on the JEM facade wall digital screen"></div><figcaption>JEM facade wall.</figcaption></figure>
+      <figure><div class="plate"><img src="images/webull-serangoon.jpg" alt="Webull platform screen doors at Serangoon MRT with commuters"></div><figcaption>Serangoon MRT, platform screen doors.</figcaption></figure>
+      <figure><div class="plate"><img src="images/webull-bus-shelter-serangoon.jpg" alt="Webull digital bus shelter panel at Serangoon at night"></div><figcaption>Bus shelter, Serangoon. The campaign ran on 12 station and mall sites plus buses.</figcaption></figure>
+    </div>
+    <figure class="plate video full" style="aspect-ratio:7680/990"><video muted loop playsinline preload="none" poster="videos/webull-sph-vivocity-megascreen-10s.jpg" src="videos/webull-sph-vivocity-megascreen-10s.mp4"></video><span class="play">play</span><figcaption style="padding:8px 12px 12px">VivoCity MegaScreen, SPH. 7680 × 990, 10 s. Birthday campaign with the Brooklyn Nets partnership.</figcaption></figure>
+    <div class="grid g4 r11">
+      <figure><div class="plate video contain"><video muted loop playsinline preload="none" poster="videos/webull-clearchannel-busshelter-10s.jpg" src="videos/webull-clearchannel-busshelter-10s.mp4"></video><span class="play">play</span></div><figcaption>SMRT bus shelters, Clear Channel<span>1080 × 1920, 10 s.</span></figcaption></figure>
+      <figure><div class="plate video contain"><video muted loop playsinline preload="none" poster="videos/webull-dhobyghaut-busstop-site.jpg" src="videos/webull-dhobyghaut-busstop-site.mp4"></video><span class="play">play</span></div><figcaption>In situ, Dhoby Ghaut<span>Site video of the placement.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/webull-japan-launch-post-15s.jpg" src="videos/webull-japan-launch-post-15s.mp4"></video><span class="play">play</span></div><figcaption>Sixth anniversary, Japan launch<span>15 s. The city-series illustrations animated.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/webull-learning-stop-limit-21s.jpg" src="videos/webull-learning-stop-limit-21s.mp4"></video><span class="play">play</span></div><figcaption>Learning Centre, stop-limit order<span>21 s. One of twelve explainers on order types.</span></figcaption></figure>
+    </div>
+    <div class="grid g3 r11">
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/webull-mothers-day-18s.jpg" src="videos/webull-mothers-day-18s.mp4"></video><span class="play">play</span></div><figcaption>Mother's Day, mascot<span>18 s.</span></figcaption></figure>
+      <figure><div class="plate video contain"><video muted loop playsinline preload="none" poster="videos/webull-cny-sticker-fitspo.jpg" src="videos/webull-cny-sticker-fitspo.mp4"></video><span class="play">play</span></div><figcaption>CNY 2023 3D mascot stickers<span>Blender. Six stickers in the set.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/webull-cny-3ways-angbao.jpg" src="videos/webull-cny-3ways-angbao.mp4"></video><span class="play">play</span></div><figcaption>CNY 2023, "3 ways to use your angbao money"<span>5 s, the Singaporean way.</span></figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>Webull's global brand came out of the US and China. My job in Singapore was to take that system and make it work across four APAC markets, each with its own team, agency, regulator and idea of what looked trustworthy, without the brand drifting.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>I executed the out-of-home and announcement workstreams of the anniversary campaign, which carried a SGD 1 million allocated budget, and adapted creative and messaging per market with the local stakeholders and media agencies. The day-to-day was production reality: platform screen door templates, bus wrap dielines, printer proofs, in-app banners at six sizes, and legal review on every claim about trading. I centralised the campaign communications and asset flow into one system so that four markets and several agencies were working from the same files.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>Holding one visual system across markets that each wanted something local, and doing it without a design team.</li>
+          <li>Regulated-category creative: every headline about returns, speed or trading went through compliance, and the work still had to look like advertising.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Prime Liquor -->
+  <article class="project" id="primeliquor">
+    <div class="project-head">
+      <h2><small>05 · Brand book, packaging and promotional creative</small>Prime Liquor</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>Ponza Trading (Prime Liquor), an alcohol delivery and premium spirits retailer, Singapore</dd>
+        <dt>Year</dt><dd>November 2021 – July 2022, in-house as Brand Manager</dd>
+        <dt>Role</dt><dd>Brand standards across the portfolio, seasonal promotional creative, packaging and merchandise</dd>
+        <dt>Deliverables</dt><dd>Brand book (logo rules, dos and don'ts, type and colour), delivery and promo icon sets, carrier bag and a Christmas edition, product photography, a 52-card playing deck, product launch banners, seasonal and weekly e-commerce creative</dd>
+      </dl>
+    </div>
+
+    <figure class="plate full"><img src="images/pl-book-cover.jpg" alt="Prime Liquor brand book cover, navy with the gorilla roundel"></figure>
+    <div class="grid g2 r169">
+      <figure><div class="plate"><img src="images/pl-book-logo.jpg" alt="Brand book logo page: the gorilla and the wordmark, vertical and horizontal lockups with clear space marked"></div><figcaption>Logo. The two elements, the lockups, and clear space set from the cap height of the P.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-book-dos.jpg" alt="Brand book dos and don'ts page with six misuse examples and the two correct versions"></div><figcaption>Dos and don'ts. Colour on dark, black on light, nothing else.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-book-intro.jpg" alt="Brand book introduction page with a carrier bag mockup"></div><figcaption>Introduction, with the rule that partners request artwork a week before use.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-book-type-colour.jpg" alt="Brand book fonts and colours page: Avenir Next Bold, Poppins, six colours with RGB and HEX"></div><figcaption>Fonts and colours. Avenir Next for the logo, Poppins for everything else, six colours with RGB and HEX.</figcaption></figure>
+    </div>
+    <div class="grid g2 r11">
+      <figure><div class="plate contain"><img src="images/primeliquor-bag.jpg" alt="Navy carrier bag with gradient gorilla illustration"></div><figcaption>Carrier bag, "good drinks for good moments".</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/pl-cards.jpg" alt="Ace of spades from the Prime Liquor playing card deck, gorilla in line-art on navy"></div><figcaption>Playing cards. A full 52-card deck plus jokers.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-xmas-lolea.jpg" alt="Christmas edition carrier bag in maroon with a Santa-hat gorilla, beside a bottle of Lolea sangria on pine and fairy lights"></div><figcaption>Christmas edition bag. The gorilla gets a Santa hat, the navy goes maroon, and the bag is shot with the product it will carry.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-xmas-glenfiddich.jpg" alt="Christmas edition carrier bag with a Glenfiddich 15 tube on pine and fairy lights"></div><figcaption>Same set, Glenfiddich 15. Product photography done in-house for the festive catalogue.</figcaption></figure>
+    </div>
+    <figure class="plate full"><img src="images/pl-clumzy-banner.jpg" alt="Web banner: three Clumzy Plumzy sour plum vodka bottles, New Arrival, deliver chilled in 45 minutes"><figcaption style="padding:8px 12px 12px">Clumzy Plumzy sour plum vodka launch banner for the web shop.</figcaption></figure>
+    <div class="grid g2 r11">
+      <figure><div class="plate"><img src="images/pl-clumzy-square.jpg" alt="Square social version of the Clumzy Plumzy launch"></div><figcaption>The same launch cut for social, from the same file.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-beers-chilled.jpg" alt="Square social ad: beers delivered chilled in 45 minutes till 2am, with Carlsberg, Guinness, Heineken and Corona in ice"></div><figcaption>"Beers delivered chilled in 45 mins, till 2am." The delivery promise as the recurring line.</figcaption></figure>
+    </div>
+    <div class="grid g4 r11">
+      <figure><div class="plate contain" style="background:#282560;border-color:#282560"><img src="images/pl-icon-express.jpg" alt="Express delivery icon, gorilla on a scooter"></div><figcaption>Delivery icons: express.</figcaption></figure>
+      <figure><div class="plate contain" style="background:#282560;border-color:#282560"><img src="images/pl-icon-scheduled.jpg" alt="Scheduled delivery icon, gorilla driving a van"></div><figcaption>Delivery icons: scheduled.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-neon-gss.jpg" alt="Neon style promo icon, GSS 20 percent off tag"></div><figcaption>Promo icons in the neon style, for the web shop and stories.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-neon-12off.jpg" alt="Neon style promo icon, 12 dollars off, drink now pay later"></div><figcaption>"Drink now, pay later."</figcaption></figure>
+    </div>
+    <div class="grid g3 r11">
+      <figure><div class="plate"><img src="images/pl-neon-slot.jpg" alt="Neon style slot machine icon with beer mugs"></div><figcaption>Lucky draw.</figcaption></figure>
+      <figure><div class="plate"><img src="images/pl-neon-box.jpg" alt="Neon style icon of a box of bottles"></div><figcaption>Bundles.</figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/primeliquor-gorilla-cheers.jpg" src="videos/primeliquor-gorilla-cheers.mp4"></video><span class="play">play</span></div><figcaption>Prime Liquor, cheers loop<span>The gorilla as a two-frame loop for stories.</span></figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>A small liquor retailer with a delivery business and a shop, selling everything from soju to Grey Goose, needing brand creative that could be funny on Instagram on a Friday and still look right on a gift bag. I was the brand manager and the only designer.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>I wrote the brand book so that the identity could survive being used by partners and the shop team without me: the logo lockups and clear space, the dos and don'ts, the fonts and the six-colour palette. Then the pieces built on it: delivery and promo icon sets in the neon style for the web shop, the carrier bag and its Christmas edition, product photography for the festive catalogue shot in-house, a full playing-card deck drawn around the gorilla, and launch banners like the Clumzy Plumzy one, built once and cut for web and social. The weekly e-commerce banners and bundles were the volume work underneath.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>The brand book. A small retailer does not usually have one, and it is what kept the Friday Instagram posts and the gift bag looking like the same company.</li>
+          <li>Taking an existing mascot and giving it enough range to carry a year of promotions and a 52-card deck without getting tired.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Yoku Moku -->
+  <article class="project" id="yokumoku">
+    <div class="project-head">
+      <h2><small>06 · Catalogue, red packets and art direction</small>Yoku Moku</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>Yoku Moku Singapore, a Japanese confectionery brand</dd>
+        <dt>Year</dt><dd>2025, freelance</dd>
+        <dt>Role</dt><dd>Layout, art direction of product photography, web build</dd>
+        <dt>Deliverables</dt><dd>Autumn &amp; Winter and Spring &amp; Summer catalogues, long-scroll web and print, product cut-outs, hero banners, allergen icon set; a four-design Chinese New Year red packet series with belly bands and gift tags</dd>
+      </dl>
+    </div>
+
+    <div class="grid g3 r34">
+      <figure><div class="plate"><img src="images/ym-ss-1.jpg" alt="Spring and Summer catalogue on yokumoku.com.sg: hero, Our Commitment, and the products index"></div><figcaption>Spring &amp; Summer catalogue, live at yokumoku.com.sg. Opening, commitment and product index.</figcaption></figure>
+      <figure><div class="plate"><img src="images/ym-ss-2.jpg" alt="Spring and Summer catalogue mid-section: product spreads on alternating colour blocks"></div><figcaption>Product spreads. One colour block per product, lifted from its tin.</figcaption></figure>
+      <figure><div class="plate"><img src="images/ym-ss-3.jpg" alt="Spring and Summer catalogue end: assortments, puzzle boxes and store details"></div><figcaption>Assortments, puzzle boxes and store details.</figcaption></figure>
+    </div>
+    <div class="grid g3 r34">
+      <figure><div class="plate"><img src="images/ym-aw-1.jpg" alt="Autumn and Winter catalogue opening on yokumoku.com.sg"></div><figcaption>Autumn &amp; Winter catalogue, live. Same system, warmer palette.</figcaption></figure>
+      <figure><div class="plate"><img src="images/ym-aw-2.jpg" alt="Autumn and Winter catalogue mid-section"></div><figcaption>Mid-section.</figcaption></figure>
+      <figure><div class="plate"><img src="images/ym-aw-3.jpg" alt="Autumn and Winter catalogue end: assortments and store details"></div><figcaption>Assortments and store details.</figcaption></figure>
+    </div>
+    <div class="grid g4 r34">
+      <figure><div class="plate contain" style="background:#b3151c;border-color:#b3151c"><img src="images/ym-redpacket-1.jpg" alt="Red packet with gold cookies falling and the characters for five blessings arriving"></div><figcaption>五福临门. The cookies stand in for the blessings.</figcaption></figure>
+      <figure><div class="plate contain" style="background:#b3151c;border-color:#b3151c"><img src="images/ym-redpacket-2.jpg" alt="Red packet with cookies arranged as a rising staircase"></div><figcaption>步步高升. Cigare cookies as the steps.</figcaption></figure>
+      <figure><div class="plate contain" style="background:#b3151c;border-color:#b3151c"><img src="images/ym-redpacket-3.jpg" alt="Red packet with two cookies as the double in good things come in pairs"></div><figcaption>好事成双. Two Billets for the pair.</figcaption></figure>
+      <figure><div class="plate contain" style="background:#b3151c;border-color:#b3151c"><img src="images/ym-redpacket-4.jpg" alt="Red packet with a single cookie as the sail in smooth sailing"></div><figcaption>一帆风顺. One cookie for the sail.</figcaption></figure>
+    </div>
+    <div class="grid g3 r11">
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/yokumoku-heritage-1969.jpg" src="videos/yokumoku-heritage-1969.mp4"></video><span class="play">play</span></div><figcaption>Yoku Moku, 1969 till present<span>35 s, heritage post.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/yokumoku-christmas-town.jpg" src="videos/yokumoku-christmas-town.mp4"></video><span class="play">play</span></div><figcaption>Yoku Moku, Christmas town<span>15 s, illustration animated.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/yokumoku-snowy-window.jpg" src="videos/yokumoku-snowy-window.mp4"></video><span class="play">play</span></div><figcaption>Yoku Moku, snowy window<span>15 s.</span></figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>A seasonal product catalogue that had to work as a long-scroll web page and as a printed piece, for a brand whose packaging is already very considered. The catalogue had to sit quietly next to the tins and not compete with them.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>I set the layout on a strict alternating grid, one colour block per product with the colour lifted from its packaging, product cut-outs and lifestyle photography in the same slot on each spread, and a small allergen icon set that repeats at the foot of every product. Japanese product names sit above the French ones at a smaller size. The same file produced the web version and the print version; both catalogues are live at yokumoku.com.sg.</p>
+        <p>The red packets are a separate job for Chinese New Year. Each of the four auspicious phrases is illustrated with the brand's own cookies in gold on red: five falling cookies for 五福临门, a staircase of Cigares for 步步高升. They went to print with belly bands and gift tags in the same system.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>Restraint. The catalogue is mostly grid, photography and one weight of type.</li>
+          <li>The red packets say Yoku Moku without a product photo, which is the test of whether the product is recognisable as a shape.</li>
+          <li>One source file for two outputs, which is what a small brand can actually maintain.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- cl-air -->
+  <article class="project" id="clair">
+    <div class="project-head">
+      <h2><small>07 · Identity, labels and print</small>cl-air</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>cl-air, a Singapore home-care brand making formaldehyde-removal products</dd>
+        <dt>Year</dt><dd>June 2023 – December 2025, freelance. Proposal and survey in mid-2023, playbook v1.2 in September 2023, packaging through 2024, spray labels in late 2025</dd>
+        <dt>Role</dt><dd>Branding proposal, logo survey and debrief, identity, brand playbook, packaging and print</dd>
+        <dt>Deliverables</dt><dd>Wordmark and tagline, brand playbook (logo, spacing grid, minimum sizes, Quicksand type, six-colour palette with RGB/CMYK/HEX/Pantone, vision and mission), 3D key visuals and product renders in Blender, pouch packaging with seal stickers, 300 ml labels for two products, tri-fold brochure, A5 flyer, gift card, namecards, shipping box, wrapping paper, social templates</dd>
+      </dl>
+    </div>
+
+    <div class="grid g2 r169">
+      <figure><div class="plate contain"><img src="images/clair-logo-explore.jpg" alt="Logo exploration for cl-air: rounded lowercase, a c-shaped mark, a condensed capital version and a script"></div><figcaption>Exploration, July 2023. Directions were put to the founders and a small group of target customers in a survey, then debriefed before committing. The rounded lowercase won.</figcaption></figure>
+      <figure><div class="plate"><img src="images/clair-pb-cover.jpg" alt="cl-air brand playbook cover"></div><figcaption>Brand playbook, v1.2, September 2023.</figcaption></figure>
+      <figure><div class="plate"><img src="images/clair-pb-about.jpg" alt="Playbook page: about cl-air, with family photographs and the brand story"></div><figcaption>The brand story: a mother's care for the air at home.</figcaption></figure>
+      <figure><div class="plate"><img src="images/clair-pb-logo.jpg" alt="Playbook logo page: type, the c-l shape that forms the mark, spacing grid, and minimum widths of 100 px and 3 cm"></div><figcaption>Logo. The mark is the c and l drawn as one shape. Minimum width is given for screen and for print.</figcaption></figure>
+      <figure><div class="plate"><img src="images/clair-pb-type.jpg" alt="Playbook typeface page: Quicksand in bold, regular and light, with the open font licence explained"></div><figcaption>Typeface. Quicksand, chosen partly because its open licence lets a small brand use it anywhere without a bill.</figcaption></figure>
+      <figure><div class="plate"><img src="images/clair-pb-colours.jpg" alt="Playbook colour page: greyscale pair and four brand colours with RGB, CMYK, HEX and Pantone values"></div><figcaption>Colours. Pink, green and sand, each specified in RGB, CMYK, HEX and Pantone so print and screen match.</figcaption></figure>
+    </div>
+    <div class="grid g4 r11">
+      <figure><div class="plate"><img src="images/clair-3d-trio.jpg" alt="Three cl-air tubes in green, sand and pink floating on white, 3D render"></div><figcaption>Key visual, August 2023. The three colourways, modelled and rendered in Blender before anything was printed.</figcaption></figure>
+      <figure><div class="plate"><img src="images/clair-3d-opened.jpg" alt="Opened cl-air tube with the lid off, a pouch and loose pellets, 3D render"></div><figcaption>Opened tube with the pouch and the pellets, for the how-it-works section.</figcaption></figure>
+      <figure><div class="plate"><img src="images/clair-3d-triple.jpg" alt="Three pink cl-air tubes in a studio setting, 3D render"></div><figcaption>Product shot for the shop, one of a set from single to six-pack.</figcaption></figure>
+      <figure><div class="plate"><img src="images/clair-3d-home.jpg" alt="Pink cl-air tube on a wooden shelf in a flat with a pouch beside it, 3D render"></div><figcaption>In the home. Same model, lifestyle set.</figcaption></figure>
+    </div>
+    <div class="grid g4 r11">
+      <figure><div class="plate contain"><img src="images/clair-guard.jpg" alt="cl-air GuardSpray 300 ml bottle with label"></div><figcaption>GuardSpray label, 300 ml, December 2025.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/clair-quick.jpg" alt="cl-air QuickSpray 300 ml bottle with label"></div><figcaption>QuickSpray label. Same grid, second product.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/clair-3d-spray.jpg" alt="Blank 300 ml spray bottle, 3D render used as the base for the label mockups"></div><figcaption>QuickSpray bottle, Blender model.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/clair-namecard.jpg" alt="cl-air namecard mockup"></div><figcaption>Namecards, January 2024.</figcaption></figure>
+    </div>
+    <div class="grid g4 r11">
+      <figure><div class="plate contain"><img src="images/clair-brochure.jpg" alt="Tri-fold brochure explaining formaldehyde in new homes"></div><figcaption>Tri-fold brochure. Most of the job was explaining the problem.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/clair-flyer.jpg" alt="A5 flyer with the product and a 10 percent offer"></div><figcaption>A5 flyer for showflats.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/clair-box.jpg" alt="Pink shipping box dieline with the wordmark"></div><figcaption>Shipping box dieline.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/clair-sticker.jpg" alt="Round door sticker, welcome to a home of cl-air"></div><figcaption>Door sticker left after a treatment.</figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>A new product in a category most people have never thought about, formaldehyde off-gassing from new furniture, sold to people who have just renovated. The brand had to be calm and domestic rather than clinical, and the print had to do a lot of explaining.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>This one started with a branding proposal in June 2023 that set out scope, stages and pricing, so the founders knew what they were buying. The logo exploration went to a survey with the founders and a small group of target customers, and I wrote up the debrief before committing to a direction. The playbook came next: logo construction, spacing grid, minimum sizes, the typeface and its licence, and a six-colour palette with print and screen values. Everything after that, the pouch packaging, seal stickers, labels, brochure, box and namecards, was built from the playbook, over two and a half years, as the product range grew. The product photography is not photography: the tube, the pouch and later the spray bottle are Blender models, so the shop and the social feed had consistent product shots before the first production run, and every new colourway or label was a re-render rather than a reshoot.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>Using a survey to settle the logo, and writing up the debrief, so the founders owned the decision.</li>
+          <li>A small playbook that has held for two and a half years of collateral. The 2025 labels sit on the 2023 grid.</li>
+          <li>Labels that hold up at print size with a lot of mandatory copy on them.</li>
+          <li>3D product renders instead of a photo shoot, which is what made the range look finished while it was still being made.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- BabySafe -->
+  <article class="project" id="babysafe">
+    <div class="project-head">
+      <h2><small>08 · Character system and packaging range</small>BabySafe</h2>
+      <dl class="meta">
+        <dt>Company</dt><dd>Dynamic Resources, Singapore. BabySafe is its baby bedding brand (natural latex pillows and mattresses)</dd>
+        <dt>Year</dt><dd>2019 – 2021, in-house as Graphic Designer &amp; Marketing Coordinator at Dynamic Resources</dd>
+        <dt>Role</dt><dd>Character design, packaging range, retail and event creative, illustration</dd>
+        <dt>Deliverables</dt><dd>Four-character family (bear, elephant, giraffe, rabbit), packaging for the full pillow and mattress range, feature icon set, care labels and inserts, retail posters, a product video per SKU, seasonal social animation</dd>
+      </dl>
+    </div>
+
+    <div class="grid g2 r43">
+      <figure><div class="plate contain" style="background:#f4d95a;border-color:#f4d95a"><img src="images/bs-pack-newborn.jpg" alt="Packaging artwork for the BabySafe newborn pillow with the bear character"></div><figcaption>Newborn pillow packaging. Every size in the range uses the same layout with the character doing something different.</figcaption></figure>
+      <figure><div class="plate contain" style="background:#f4d95a;border-color:#f4d95a"><img src="images/bs-pack-mattress.jpg" alt="Packaging band for the playpen mattress with dimensions and feature callouts"></div><figcaption>Playpen mattress band, with the dimensions table and feature callouts in the same place on every SKU.</figcaption></figure>
+    </div>
+    <div class="grid g4 r11">
+      <figure><div class="plate contain"><img src="images/bs-characters.jpg" alt="The rabbit, elephant and giraffe characters"></div><figcaption>The family. Each character is tied to an age group.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/bs-icons.jpg" alt="Twelve pink circular feature icons: natural latex, anti dust mite, removable cover, well ventilated"></div><figcaption>Feature icons used on every pack.</figcaption></figure>
+      <figure><div class="plate"><img src="images/babysafe-christmas-social.jpg" alt="BabySafe Christmas illustration with the bear, elephant, rabbit and giraffe around a tree"></div><figcaption>Christmas social post. The whole family in one scene.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/bs-poster.jpg" alt="Retail poster, the right pillow for every stage"></div><figcaption>Retail poster, the range by age.</figcaption></figure>
+    </div>
+    <div class="grid g3 r11">
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/babysafe-bambeanie.jpg" src="videos/babysafe-bambeanie.mp4"></video><span class="play">play</span></div><figcaption>Product video, Bambeanie pillow<span>60 s explainer, first 30 s shown. One per product in the range.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/babysafe-mattress.jpg" src="videos/babysafe-mattress.mp4"></video><span class="play">play</span></div><figcaption>Product video, mattress<span>30 s, with the playpen and cot sizes.</span></figcaption></figure>
+      <figure><div class="plate contain"><img src="images/bs-header.jpg" alt="Packaging header panel, joyful bonding moments with BabySafe buddies"></div><figcaption>Packaging header with care symbols.</figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>A bedding brand that had been around since 1999 with packaging that had grown one SKU at a time. It needed a system that could cover pillows from newborn to toddler, mattresses in five sizes, and bolsters, and that a parent could read in a shop in a few seconds.</p></div>
+      <h3>What I did</h3>
+      <div><p>I drew a family of characters, one per age group, and built the packaging as a fixed layout: character, product name and age range top left, feature icons and dimensions in the same place on every pack, care instructions on the reverse. The same characters then carried the retail posters and the seasonal social content, so the brand had one voice from shelf to feed. This is close to three hundred working files, which gives some idea of how many SKUs and sizes there were.</p></div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>A packaging template that a distributor could extend to a new SKU without me.</li>
+          <li>Character illustration as a system, with a defined role for each character, rather than a mascot used at random.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Zenko -->
+  <article class="project" id="zenko">
+    <div class="project-head">
+      <h2><small>09 · Retail display and packaging</small>Zenko Superfoods</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>Zenko Superfoods</dd>
+        <dt>Year</dt><dd>2019 – 2021, in-house as Graphic Designer &amp; Marketing Coordinator at Dynamic Resources</dd>
+        <dt>Role</dt><dd>Design, production artwork and print liaison</dd>
+        <dt>Deliverables</dt><dd>Floor standee (1520 mm) with header, four shelf strips, side panels and back; six-flavour pack range; shipping carton; A4 counter display</dd>
+      </dl>
+    </div>
+
+    <div class="grid g2 r43">
+      <figure><div class="plate contain"><img src="images/zenko-4.jpg" alt="Dimensioned mockup of the Zenko floor standee from four angles"></div><figcaption>Standee, 580 × 1520 × 250 mm, dimensioned for the fabricator.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/zenko-2.jpg" alt="Standee side panels with the four flavour packs and their raw ingredients"></div><figcaption>Side panels. Raw ingredients next to the pack so the flavour reads from across the aisle.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/zenko-1.jpg" alt="Standee header panel with product name and four claim icons"></div><figcaption>Header panel. The claim icons (plant-based, gluten-free) are placed where a shopper stands to read.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/zenko-3.jpg" alt="Shelf strips and the back panel of the standee"></div><figcaption>Shelf strips and back panel.</figcaption></figure>
+    </div>
+    <div class="grid g3 r11">
+      <figure><div class="plate contain"><img src="images/zenko-pack.jpg" alt="Zenko Peri Peri pack artwork"></div><figcaption>Pack range, six flavours.</figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/zenko-time-for-a-break.jpg" src="videos/zenko-time-for-a-break.mp4"></video><span class="play">play</span></div><figcaption>Zenko, time for a break<span>5 s stop-motion style.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/zenko-1111-bag.jpg" src="videos/zenko-1111-bag.mp4"></video><span class="play">play</span></div><figcaption>Zenko × RedMart 11.11<span>2 s loop.</span></figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>A popped water-lily seed snack going into supermarkets, needing a floor display that would carry six flavours and explain the product to shoppers who had never heard of it, on a distributor's budget.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>I designed the standee as a set of surfaces with different jobs: the header for the product name and claims at eye level, the side panels for flavour and appetite from a distance, the shelf strips for one-line messages. Everything was drawn to the fabricator's dimensions and delivered as final artwork with bleed. I also produced the six-flavour pack range and the shipping carton.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>The written rationale on each panel: the presentation explains why each surface is designed the way it is, which made sign-off with the brand owner quick.</li>
+          <li>Production: dielines, CMYK, bleed, fabricator liaison. This is the end of the job I still do myself.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Partior -->
+  <article class="project" id="partior">
+    <div class="project-head">
+      <h2><small>10 · Website, 3D visuals and content system for a payments network</small>Partior</h2>
+      <dl class="meta">
+        <dt>Client</dt><dd>Partior, a blockchain-based clearing and settlement network operated with DBS, J.P. Morgan, Standard Chartered and Temasek</dd>
+        <dt>Year</dt><dd>August 2025 – present, in-house</dd>
+        <dt>Role</dt><dd>Sole marketing and design lead, reporting to the CEO. Direct an external agency and production vendors</dd>
+        <dt>Deliverables</dt><dd>Website (design, 3D key visuals in Blender, build on Webflow), modular diagram and content system, platform video, product-line videos, partnership announcement visuals, event and client collateral, Figma UI screens for product</dd>
+      </dl>
+    </div>
+
+    <figure class="plate full"><img src="images/partior-hero.jpg" alt="Partior website hero: Global Liquidity, Redefined, with a stack of dark ledger plates and currency symbols in orbit"><figcaption style="padding:8px 12px 12px">partior.com hero. "Global liquidity, redefined." The ledger stack and the currency symbols are modelled and rendered in Blender.</figcaption></figure>
+    <div class="grid g2 r169">
+      <figure><div class="plate contain" style="background:#09111e;border-color:#09111e"><img src="images/partior-globe.png" alt="Dark globe at night with glowing orbit rings carrying dollar, euro, yen and pound symbols"></div><figcaption>Globe with currency orbits. Blender, used across the site and social.</figcaption></figure>
+      <figure><div class="plate video contain"><video muted loop playsinline preload="none" poster="videos/partior-processing.jpg" src="videos/partior-processing.mp4"></video><span class="play">play</span></div><figcaption>"Live 24/7" processing loop, 3 s. Rendered in Blender for the settlement section of the site.</figcaption></figure>
+    </div>
+    <figure class="plate full"><img src="images/partior-modular.jpg" alt="Partior modular content system: the same settlement flow drawn at four levels of technical depth"><figcaption style="padding:8px 12px 12px">Modular content system. The same clearing and settlement flow drawn at four depths, so a commercial lead can pick the level for the person in front of them and the diagrams still look like one family.</figcaption></figure>
+    <div class="grid g3 r169">
+      <figure><div class="plate"><img src="images/partior-enbd.jpg" alt="Emirates NBD and Partior partnership announcement visual"></div><figcaption>Partnership announcement, Emirates NBD, June 2026.</figcaption></figure>
+      <figure><div class="plate contain" style="background:#0a1f3d;border-color:#0a1f3d"><img src="images/partior-nh.jpg" alt="NongHyup Bank and Partior announcement visual with a wireframe globe"></div><figcaption>NongHyup Bank announcement.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/partior-sibos.jpg" alt="Deutsche Bank's stand at Sibos 2025 with the Partior platform video playing on the main screen"></div><figcaption>Sibos 2025. The platform video I produced, playing on Deutsche Bank's own stand; Deutsche Bank also published it on its corporate site.</figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>A bank-owned settlement network whose website had been quoted at US$40,000 by an agency, and whose product is genuinely hard to explain to anyone outside a treasury desk. The job was to rebuild the site in-house, give the brand a visual language that says infrastructure rather than crypto, and produce the assets the commercial team and the partner banks kept asking for.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>I designed and built partior.com myself, on Webflow, and made the key visuals in Blender: the ledger stack in the hero, the globe with currency orbits, the "Live 24/7" processing loop. Dark ground, one cyan, real 3D objects instead of stock. Direct traffic went up 85% and organic search 10% after launch (GA4, from September 2025). The modular content system came out of the same problem: the commercial team needed to explain settlement at different depths to different people without the diagrams drifting, so I drew the flow once at four levels of detail. The platform video went to Deutsche Bank at short notice and they put it on their Sibos stand and their corporate site.</p>
+        <p class="note" style="margin-top:14px">Only material Partior or its partners have published is shown here. More can be discussed in an interview within the limits of confidentiality.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>Website, 3D and build by one person, against a US$40,000 quote.</li>
+          <li>The content system: making a hard product explainable without misrepresenting it, in a way the commercial team actually uses.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Mustela -->
+  <article class="project" id="mustela">
+    <div class="project-head">
+      <h2><small>11 · Campaigns, illustration and content for a distributor brand</small>Mustela Singapore</h2>
+      <dl class="meta">
+        <dt>Company</dt><dd>Dynamic Resources, Singapore, the distributor of Mustela, a French baby and maternity skincare brand</dd>
+        <dt>Year</dt><dd>2019 – 2021, in-house as Graphic Designer &amp; Marketing Coordinator at Dynamic Resources</dd>
+        <dt>Role</dt><dd>Campaign concepts, key visuals, illustration, video shoots and editing, retail and marketplace creative, on a weekly cycle</dd>
+        <dt>Deliverables</dt><dd>Casting Call Baby 2020/21 campaign (key visual, studio shoot, ~30 winner videos, teasers, behind-the-scenes series), #WhatMumsWant series, Avocado Hunt in-store activation, hand-drawn ingredient illustration set, newborn guide, packaging-message infographic, marketplace banners for Shopee, Lazada and Qoo10</dd>
+      </dl>
+    </div>
+
+    <figure class="plate full"><img src="images/mu-casting-kv.jpg" alt="Casting Call 2020/2021 key visual: a studio backdrop with the line I Am Unique under studio lights"><figcaption>Casting Call Baby 2020/2021. The key visual: an empty studio set, because the babies were the point.</figcaption></figure>
+    <div class="grid g4 r11">
+      <figure><div class="plate video contain"><video muted loop playsinline preload="none" poster="videos/mustela-casting-bts.jpg" src="videos/mustela-casting-bts.mp4"></video><span class="play">play</span></div><figcaption>Studio shoot, behind the scenes<span>20 s of the raw GoPro footage. We ran the shoots in-house.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/mustela-casting-kayler.jpg" src="videos/mustela-casting-kayler.mp4"></video><span class="play">play</span></div><figcaption>Winner video, Kayler<span>One of ~30, each with a name lockup and a trophy.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/mustela-casting-enzo.jpg" src="videos/mustela-casting-enzo.mp4"></video><span class="play">play</span></div><figcaption>Winner video, Enzo</figcaption></figure>
+      <figure><div class="plate video contain"><video muted loop playsinline preload="none" poster="videos/mustela-revealing-babies.jpg" src="videos/mustela-revealing-babies.mp4"></video><span class="play">play</span></div><figcaption>"Revealing SG Mustela babies" teaser<span>5 s, story format.</span></figcaption></figure>
+    </div>
+
+    <div class="grid g3 r11">
+      <figure><div class="plate contain"><img src="images/mu-ill-stickers.jpg" alt="Sticker sheet with the avocado, bee, redcurrant and sunflower characters"></div><figcaption>Sticker sheet for the stores.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/mu-avocado-hunt.jpg" alt="Avocado Hunt activation post: spot the avocado plant, snap a photo, WhatsApp it"></div><figcaption>Avocado Hunt with Kiddy Palace. A four-step in-store activation, S$2,000 in prizes.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/mu-packaging-msgs.jpg" alt="Infographic explaining the messages on the new Mustela packaging with the ingredient characters"></div><figcaption>New-packaging explainer. The characters do the work the copy would otherwise have to.</figcaption></figure>
+    </div>
+
+    <div class="grid g3 r11">
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/mustela-whatmumswant.jpg" src="videos/mustela-whatmumswant.mp4"></video><span class="play">play</span></div><figcaption>#WhatMumsWant<span>60 s portrait series, mothers answering one question.</span></figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/mustela-baby-milestones.jpg" src="videos/mustela-baby-milestones.mp4"></video><span class="play">play</span></div><figcaption>Baby milestones<span>"We asked parents what their baby's first word was."</span></figcaption></figure>
+      <figure><div class="plate contain"><img src="images/mu-newborn-guide.jpg" alt="An easy guide to using the newborn set, three steps: bathe, hydrate, protect"></div><figcaption>Newborn set guide, print and in-box.</figcaption></figure>
+    </div>
+    <div class="grid g3 r11">
+      <figure><div class="plate contain"><img src="images/mu-skin-types.jpg" alt="Two panels: for babies with normal skin, with an avocado; for very sensitive skin, with redcurrants"></div><figcaption>Skin-type posts. The ingredient decides the colour.</figcaption></figure>
+      <figure><div class="plate contain"><img src="images/mu-million-ways.jpg" alt="There are a million ways of being a good parent, brand statement on yellow with coloured circles"></div><figcaption>Brand statement post.</figcaption></figure>
+      <figure><div class="plate video"><video muted loop playsinline preload="none" poster="videos/mustela-authorised-distributor.jpg" src="videos/mustela-authorised-distributor.mp4"></video><span class="play">play</span></div><figcaption>Authorised distributor explainer<span>36 s, for the marketplace listings.</span></figcaption></figure>
+    </div>
+
+    <div class="story">
+      <h3>The brief</h3>
+      <div><p>Mustela is a French brand with its own global identity, so the job was never to design the brand. It was to keep a distributor's Singapore presence alive every week for two years: local campaigns, retail activations, marketplace sales creative on Shopee, Lazada and Qoo10, and enough content to feed the social accounts, on a small team where I was the designer, the illustrator and often the camera.</p></div>
+      <h3>What I did</h3>
+      <div>
+        <p>The biggest piece was Casting Call Baby, two years running. I concepted it, built the key visual, ran the studio shoots, then cut around thirty winner videos in one frame system so they could go out one a day. Around that I drew an illustration family for the brand's ingredients and used it everywhere: stickers, the in-store Avocado Hunt with Kiddy Palace, the newborn guide, the packaging explainer, the skin-type posts. The maternity content got a quieter treatment: #WhatMumsWant and the baby-milestones series. Underneath all of it were the weekly marketplace banners, several hundred of them, which is the volume work that kept the listings selling.</p>
+      </div>
+      <h3>What I would point to</h3>
+      <div>
+        <ul>
+          <li>Building local campaigns inside someone else's brand system without breaking it, which is the same discipline as the Webull work, in FMCG.</li>
+          <li>The illustration family. One set of characters carried two years of content and made the distributor's feed look like its own thing.</li>
+          <li>Running the shoots as well as designing the output.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Other work -->
+  <section class="other" id="other">
+    <p class="label">Other work</p>
+    <h2 style="margin-top:14px">A salon, and a product of my own.</h2>
+    <p style="margin-top:14px; color: var(--ink-soft)">Two pieces that do not need a full case study: namecards for a hair salon, and the SaaS platform I designed and built end to end, with its own identity and a documented design system, so I know what happens to a design system when engineering consumes it.</p>
+    <div class="other-grid">
+      <figure><div class="plate contain"><img src="images/beu-card-maggie.jpg" alt="Be U hair design namecard with a line-drawn portrait of the stylist"></div><figcaption>Be U Hair Design stylist namecards<span>Each stylist got a line-drawn portrait on their card.</span></figcaption></figure>
+      <figure><div class="plate"><img src="images/ab-site.jpg" alt="AdvanceBooking landing page, run your entire service business from one platform"></div><figcaption>AdvanceBooking<span>A booking and point-of-sale SaaS I designed, built and run. Live at advancebooking.app.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- How I work -->
+  <section class="lead" id="lead">
+    <p class="label">How I work</p>
+    <h2 style="margin-top:14px">How I work, and what I have not done yet.</h2>
+    <div class="lead-grid">
+      <h3 class="label" style="padding-top:6px">Systems and governance</h3>
+      <div>
+        <p>Most of my identity work ends with a document that tells other people how to use it, and I take that part seriously. The TradeTogether guidelines include approval routes and regulatory constraints because the client's real risk was not a stretched logo, it was a factsheet that said something a fund manager cannot say. I like writing the rules, and I like that they let people work without me. This is the same habit whether the job title is art director, brand manager or creative lead.</p>
+      </div>
+      <h3 class="label" style="padding-top:6px">Directing others</h3>
+      <div>
+        <p>At Partior I direct an external agency and production vendors; at Webull I worked with in-market agencies in four countries. I have not managed a team as their line manager. I have set briefs, reviewed work, sent it back, and held a retainer to scope, which is most of the day-to-day of directing, but I would rather say plainly that the people-management part is new.</p>
+      </div>
+      <h3 class="label" style="padding-top:6px">Production</h3>
+      <div>
+        <p>I still do final artwork myself: CMYK, bleed, dielines, printer proofs, vendor liaison. At the other end I design in Figma against documented token systems, and I have built the websites for two of the brands here, so I know what happens to a design system when engineering consumes it.</p>
+      </div>
+      <h3 class="label" style="padding-top:6px">Working in regulated categories</h3>
+      <div>
+        <p>Seven years of financial brands means I am used to legal and compliance being in the approval chain, and to designing so that the review is short. This is not glamorous and it is a large part of why the work ships on time.</p>
+      </div>
+      <h3 class="label" style="padding-top:6px">Tools and speed</h3>
+      <div>
+        <p>Adobe Creative Suite including After Effects and Premiere, Figma, Blender for 3D mascots and product mockups, and a working knowledge of HTML, CSS and React. I use AI tools in production for the parts of the job that are mechanical, and I keep the judgement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <p class="label">About</p>
+    <h2 style="margin-top:14px">XianLong Yue</h2>
+    <div class="about-grid">
+      <div>
+        <img src="images/xl-photo.jpg" alt="Portrait of XianLong Yue">
+        <p style="margin-top:20px; font-size:15.5px; color: var(--ink-soft)">Singapore citizen. Professional Diploma in Advertising and Design, M.A.D. School / Chatsworth Medi@rt Academy, 2015–2019, completed in the evenings while working full-time in retail. Certifications in UX design (2021), Next.js and React (Vercel, 2025) and Google Ads.</p>
+      </div>
+      <div>
+        <ul class="timeline">
+          <li><span>Aug 2025 – now</span><span>Senior Associate, Marketing &amp; Communications<em>Partior, Singapore</em></span></li>
+          <li><span>Nov 2024 – Jul 2025</span><span>Marketing Manager<em>Teleskop Technologies, Singapore</em></span></li>
+          <li><span>Jul 2022 – Oct 2024</span><span>Branding Associate<em>Webull Holdings (Singapore)</em></span></li>
+          <li><span>Nov 2021 – Jul 2022</span><span>Brand Manager<em>Ponza Trading (Prime Liquor), Singapore</em></span></li>
+          <li><span>Jul 2019 – Jun 2021</span><span>Graphic Designer &amp; Marketing Coordinator<em>Dynamic Resources (Mustela &amp; BabySafe), Singapore</em></span></li>
+          <li><span>2025 – 2026</span><span>Freelance identity work<em>TradeTogether, 3R Investment Management, cl-air, Yoku Moku, Be U</em></span></li>
+        </ul>
+        <div class="contact">
+          <a href="mailto:xlcommunicates@gmail.com">xlcommunicates@gmail.com</a>
+          <span>+65 8742 1544</span>
+          <a href="https://linkedin.com/in/xianlong-yue-673240166">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <footer>© 2026 XianLong Yue. Client work shown with permission or from public sources; confidential material withheld.</footer>
+  </section>
+</main>
+
+<script>
+(function () {
+  var figs = Array.prototype.filter.call(document.querySelectorAll('figure'), function (f) { return f.querySelector('video'); });
+  function play(f) { var v = f.querySelector('video'); if (!v) return; f.classList.add('playing'); v.play().catch(function () {}); }
+  function stop(f) { var v = f.querySelector('video'); if (!v) return; f.classList.remove('playing'); v.pause(); }
+  var canHover = window.matchMedia('(hover: hover)').matches;
+  figs.forEach(function (f) {
+    if (canHover) {
+      f.addEventListener('mouseenter', function () { play(f); });
+      f.addEventListener('mouseleave', function () { stop(f); });
+    }
+    f.addEventListener('click', function () { f.classList.contains('playing') ? stop(f) : play(f); });
+  });
+})();
+</script>
