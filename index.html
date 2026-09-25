@@ -89,10 +89,12 @@
   .plate.full img { height: auto; }
   .plate.contain img, .plate.contain video { object-fit: contain; object-position: center; }
   .plate.video { position: relative; background: #101214; border-color: #101214; }
+  .film .plate.video video { object-fit: contain; }
   .plate.video .play { position: absolute; right: 10px; bottom: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.55); padding: 4px 8px; border-radius: 2px; pointer-events: none; }
   figure.playing .play { opacity: 0; }
   figure { margin: 0; }
   figcaption { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin-top: 8px; letter-spacing: 0.01em; }
+  figcaption span { display: block; margin-top: 2px; }
   .plate.full figcaption { padding: 8px 12px 12px; }
 
   .grid { display: grid; gap: 14px; margin-top: 14px; align-items: start; }
@@ -677,13 +679,17 @@
       <figure><div class="plate contain" style="background:#0a1f3d;border-color:#0a1f3d"><img src="images/partior-nh.jpg" alt="NongHyup Bank and Partior announcement visual with a wireframe globe"></div><figcaption>NongHyup Bank announcement.</figcaption></figure>
       <figure><div class="plate contain"><img src="images/partior-sibos.jpg" alt="Deutsche Bank's stand at Sibos 2025 with the Partior platform video playing on the main screen"></div><figcaption>Sibos 2025. The platform video I produced, playing on Deutsche Bank's own stand; Deutsche Bank also published it on its corporate site.</figcaption></figure>
     </div>
+    <div class="grid g2 r169">
+      <figure class="film"><div class="plate video"><video controls playsinline preload="none" poster="videos/partior-deutsche-bank.jpg" src="videos/partior-deutsche-bank.mp4"></video></div><figcaption>Deutsche Bank and Partior, platform film<span>1 min 35 s, with sound. The euro payment followed end to end, from Deutsche Bank posting the instruction to settlement at DBS. This is the film that ran on Deutsche Bank's stand at Sibos 2025.</span></figcaption></figure>
+      <figure class="film"><div class="plate video"><video controls playsinline preload="none" poster="videos/partior-nonghyup-bank.jpg" src="videos/partior-nonghyup-bank.mp4"></video></div><figcaption>NongHyup Bank and Partior, announcement film<span>1 min 35 s, Korean voiceover and subtitles, for release in Korea. Marks the completion of the cross-border settlement pilot with J.P. Morgan and Partior.</span></figcaption></figure>
+    </div>
 
     <div class="story">
       <h3>The brief</h3>
       <div><p>A bank-owned settlement network whose website had been quoted at US$40,000 by an agency, and whose product is genuinely hard to explain to anyone outside a treasury desk. The job was to rebuild the site in-house, give the brand a visual language that says infrastructure rather than crypto, and produce the assets the commercial team and the partner banks kept asking for.</p></div>
       <h3>What I did</h3>
       <div>
-        <p>I designed and built partior.com myself, on Webflow, and made the key visuals in Blender: the ledger stack in the hero, the globe with currency orbits, the "Live 24/7" processing loop. Dark ground, one cyan, real 3D objects instead of stock. Direct traffic went up 85% and organic search 10% after launch, and the site reached 20,000 active users in 2026, up 29% year on year (GA4). I report that monthly to the CEO alongside the rest of the plan, with each programme mapped to the company objective it serves. The modular content system came out of the same problem: the commercial team needed to explain settlement at different depths to different people without the diagrams drifting, so I drew the flow once at four levels of detail. The platform video went to Deutsche Bank at short notice and they put it on their Sibos stand and their corporate site.</p>
+        <p>I designed and built partior.com myself, on Webflow, and made the key visuals in Blender: the ledger stack in the hero, the globe with currency orbits, the "Live 24/7" processing loop. Dark ground, one cyan, real 3D objects instead of stock. Direct traffic went up 85% and organic search 10% after launch, and the site reached 20,000 active users in 2026, up 29% year on year (GA4). I report that monthly to the CEO alongside the rest of the plan, with each programme mapped to the company objective it serves. The modular content system came out of the same problem: the commercial team needed to explain settlement at different depths to different people without the diagrams drifting, so I drew the flow once at four levels of detail. The platform video went to Deutsche Bank at short notice and they put it on their Sibos stand and their corporate site. The same job repeats for each partner: the NongHyup Bank film was produced for release in Korea, in Korean, with the settlement flow redrawn for that announcement.</p>
         <p class="note" style="margin-top:14px">Only material Partior or its partners have published is shown here. More can be discussed in an interview within the limits of confidentiality.</p>
       </div>
       <h3>What I would point to</h3>
@@ -830,7 +836,7 @@
 
 <script>
 (function () {
-  var figs = Array.prototype.filter.call(document.querySelectorAll('figure'), function (f) { return f.querySelector('video'); });
+  var figs = Array.prototype.filter.call(document.querySelectorAll('figure'), function (f) { return f.querySelector('video') && !f.classList.contains('film'); });
   function play(f) { var v = f.querySelector('video'); if (!v) return; f.classList.add('playing'); v.play().catch(function () {}); }
   function stop(f) { var v = f.querySelector('video'); if (!v) return; f.classList.remove('playing'); v.pause(); }
   var canHover = window.matchMedia('(hover: hover)').matches;
